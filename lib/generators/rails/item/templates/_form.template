@@ -17,8 +17,11 @@
           <% elsif options[:tag][index] == 'number' %>  = f.number_field :<%= attr %>, :class => "form-control"
           <% elsif options[:tag][index] == 'date' %>  = f.date_field :<%= attr %>, :class => "form-control"
           <% elsif options[:tag][index] == 'password' %>  = f.password_field :<%= attr %>, :class => "form-control"
-          <% elsif options[:tag][index] == 'phone' %>  = f.phone_field :<%= attr %>, :class => "form-control"
-          <% elsif options[:tag][index] == 'email' %>  = f.email_field :<%= attr %>, :class => "form-control"<% end %><% end %>
+          <% elsif options[:tag][index] == 'phone' %> = f.phone_field :<%= attr %>, :class => "form-control"
+          <% elsif options[:tag][index] == 'email' %> = f.email_field :<%= attr %>, :class => "form-control"
+          <% elsif options[:tag][index] == 'radio' %>  = f.radio_button :<%= attr %>, true, :class => "form-control"
+            = f.radio_button :<%= attr %>, false, :class => "form-control"
+          <% elsif options[:tag][index] == 'select' %>  = f.select :<%= attr %>, options_for_<%= attr %>, {:include_blank=>false}, {:class=>"form-control"}<% end %><% end %>
       <% if @enclosure %>
         .form-group.row
           = f.label "主图", :class => "col-sm-3 control-label"

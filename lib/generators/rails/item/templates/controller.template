@@ -3,31 +3,25 @@ class <%= @mpc %>Controller < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
 
+  <% if @index %> 
   def index
     @<%= @mpu %> = <%= @mc %>.all
   end
+  <% end %> 
 
+  <% if @show %> 
   def show
     @<%= @mu %> = <%= @mc %>.find(params[:id])
   end
+  <% end %> 
 
+  <% if @new %> 
   def new
     @<%= @mu %> = <%= @mc %>.new
   end
+  <% end %> 
 
-  def edit
-    @<%= @mu %> = <%= @mc %>.find(params[:id])
-  end
-
-  def update
-    @<%= @mu %> = <%= @mc %>.find(params[:id])
-    if @<%= @mu %>.update(<%= @mu %>_params)
-      redirect_to <%= @mu %>_path(@<%= @mu %>) 
-    else
-      render :edit
-    end
-  end
-
+  <% if @new %> 
   def create
     @<%= @mu %> = <%= @mc %>.new(<%= @mu %>_params)
     #@<%= @mu %>.user = current_user
@@ -37,12 +31,32 @@ class <%= @mpc %>Controller < ApplicationController
       render :new
     end
   end
+  <% end %> 
 
+  <% if @edit %> 
+  def edit
+    @<%= @mu %> = <%= @mc %>.find(params[:id])
+  end
+  <% end %> 
+
+  <% if @edit %> 
+  def update
+    @<%= @mu %> = <%= @mc %>.find(params[:id])
+    if @<%= @mu %>.update(<%= @mu %>_params)
+      redirect_to <%= @mu %>_path(@<%= @mu %>) 
+    else
+      render :edit
+    end
+  end
+  <% end %> 
+
+  <% if @index %> 
   def destroy
     @<%= @mu %> = <%= @mc %>.find(params[:id])
     @<%= @mu %>.destroy
     redirect_to :action => :index
   end
+  <% end %> 
 
   private
     def <%= @mu %>_params

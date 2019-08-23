@@ -2,7 +2,7 @@ ActiveAdmin.register <%= @mc %>  do
 
   permit_params <% @attrs.each_with_index do |attr, index| %> :<%= attr %><%= index == @attrs.size-1 ? '' : ','%><% end %>
 
-  menu label: "todo"
+  menu label: Setting.<%= @mpu %>.label
   config.per_page = 20
   config.sort_order = "id_asc"
 
@@ -10,7 +10,7 @@ ActiveAdmin.register <%= @mc %>  do
   filter :<%= attr %>, :label => Setting.<%= @mpu %>.<%= attr %><% end %>
   filter :created_at
 
-  index :title=>"todo" do
+  index :title=>Setting.<%= @mpu %>.label + "管理" do
     selectable_column
     id_column
     <% @attrs.each do |attr| %>
@@ -26,14 +26,14 @@ ActiveAdmin.register <%= @mc %>  do
   end
 
   form do |f|
-    f.inputs "详情" do
+    f.inputs "添加" + Setting.<%= @mpu %>.label do
       <% @attrs.each do |attr| %>
       f.input :<%= attr %>, :label => Setting.<%= @mpu %>.<%= attr %> <% end %>
     end
     f.actions
   end
 
-  show :title=>'todo' do
+  show :title=>Setting.<%= @mpu %>.label + "信息" do
     attributes_table do
       row "ID" do
         <%= @mu %>.id
