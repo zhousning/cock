@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
 
   resources :controls, :only => [:index]
+  resources :models
 
   resources :systems, :only => [] do
     get :send_confirm_code, :on => :collection
@@ -24,7 +25,6 @@ Rails.application.routes.draw do
     get :mobile_authc_new, :on => :member
     post :mobile_authc_create, :on => :member
     get :mobile_authc_status, :on => :member
-
   end
 
   resources :orders, :only => [:new, :create] do

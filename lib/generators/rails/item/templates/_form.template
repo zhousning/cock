@@ -10,7 +10,7 @@
                 %li= msg
       <% @attrs.each_with_index do |attr, index| %>
         .form-group.row
-          = f.label Setting.<%= @mpu %>.<%= attr %>, :class => "col-sm-3 col-form-label"
+          = f.label Setting.<%= @mpu %>.<%= attr %>, :class => "col-sm-3 text-right"
           .col-sm-9
           <% if options[:tag][index] == 'text' %>  = f.text_field :<%= attr %>, :class => "form-control"
           <% elsif options[:tag][index] == 'textarea' %>  = f.text_area :<%= attr %>, :class => "form-control", :rows => "20"
@@ -19,8 +19,18 @@
           <% elsif options[:tag][index] == 'password' %>  = f.password_field :<%= attr %>, :class => "form-control"
           <% elsif options[:tag][index] == 'phone' %> = f.phone_field :<%= attr %>, :class => "form-control"
           <% elsif options[:tag][index] == 'email' %> = f.email_field :<%= attr %>, :class => "form-control"
-          <% elsif options[:tag][index] == 'radio' %>  = f.radio_button :<%= attr %>, true, :class => "form-control"
-            = f.radio_button :<%= attr %>, false, :class => "form-control"
+          <% elsif options[:tag][index] == 'radio' %>  .form-check.form-check-inline
+              = f.radio_button :<%= attr %>, Setting.systems.status_en_yes, :class => "form-check-input", :checked => "checked"
+              = f.label Setting.systems.status_yes, :class => "form-check-label"
+            .form-check.form-check-inline
+              = f.radio_button :<%= attr %>, Setting.systems.status_en_no, :class => "form-check-input"
+              = f.label Setting.systems.status_no, :class => "form-check-label"
+          <% elsif options[:tag][index] == 'check' %>  .form-check.form-check-inline
+              = f.check_box :<%= attr %>, :class => "form-check-input"
+              = f.label Setting.systems.status_yes, :class => "form-check-label"
+            .form-check.form-check-inline
+              = f.check_box :<%= attr %>, :class => "form-check-input"
+              = f.label Setting.systems.status_no, :class => "form-check-label"
           <% elsif options[:tag][index] == 'select' %>  = f.select :<%= attr %>, options_for_<%= attr %>, {:include_blank=>false}, {:class=>"form-control"}<% end %><% end %>
       <% if @enclosure %>
         .form-group.row

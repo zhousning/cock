@@ -5,17 +5,22 @@ class Rails::ItemGenerator < Rails::Generators::Base
   argument :model, :type => :string, :default => "model"
   argument :columns, :type => :array, :default => []
 
+  class_option :name, :aliases => '-n',  :type => :string, :default => ""
+
   class_option :label, :aliases => '-l', :type => :array, :default => []
   class_option :tag, :aliases => '-t', :type => :array, :default => []
-  class_option :name, :aliases => '-n',  :type => :string, :default => ""
+
   class_option :image, :aliases => '-i', :type => :boolean, :default => false 
+
   class_option :index, :aliases => '-x', :type => :boolean, :default => true 
   class_option :new, :aliases => '-w', :type => :boolean, :default => true 
   class_option :edit, :aliases => '-e', :type => :boolean, :default => true 
   class_option :show, :aliases => '-h', :type => :boolean, :default => true 
   class_option :form, :aliases => '-r', :type => :boolean, :default => true 
+
   class_option :js, :aliases => '-j', :type => :boolean, :default => true 
   class_option :scss, :aliases => '-c', :type => :boolean, :default => true 
+
   class_option :admin, :aliases => '-a', :type => :boolean, :default => true 
 
   def generate_model
