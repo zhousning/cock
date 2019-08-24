@@ -1,0 +1,36 @@
+- provide(:title, t('.title'))
+
+- content_for :main_body do
+  .container-fluid
+    .row
+      .col-md-12
+        %table.table.text-center.table-bordered
+          %thead
+            %tr
+            
+              %th 
+                = Setting.natures.name
+              %th 
+                = Setting.natures.type
+              %th 
+                = Setting.natures.title
+              %th 
+                = Setting.natures.tag
+              %th
+          %tbody
+            %tr
+            
+              %td
+                = @nature.name
+              %td
+                = @nature.type
+              %td
+                = @nature.title
+              %td
+                = @nature.tag
+              %td
+                = link_to '编辑', edit_nature_path(@nature), :class => "btn btn-success"
+                = link_to '返回', natures_path, :class => "btn btn-danger"
+    
+
+= render "layouts/control_panel"

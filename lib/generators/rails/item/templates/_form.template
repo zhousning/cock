@@ -41,6 +41,15 @@
             .links
               = link_to_add_association "添加文件", f, :enclosures, :class => "btn btn-success"
       <% end %>
+      <% @fields.each do |field| %>
+        .form-group.row
+          = f.label "主图", :class => "col-sm-3 control-label"
+          .col-sm-9
+            = f.fields_for :<%= field.pluralize %> do |<%= field %>|
+              = render '<%= field %>_fields', f: <%= field %> 
+            .links
+              = link_to_add_association "添加", f, :<%= field.pluralize %>, :class => "btn btn-success"
+      <% end %>
         .form-group.row
           .col-sm-3.offset-sm-2
             = f.submit '保存', :class => "btn btn-success"

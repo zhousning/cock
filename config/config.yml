@@ -240,8 +240,27 @@ development:
     tag: 标签
   relates:
     label: ''
-    type: 关联关系
-    obj: 关联对象
+    type: 关联类型
+    obj: 对象
+  templates:
+    label: ''
+    name: 名称
+    nest: 嵌套属性
+    image: 图像
+    index: 列表
+    new: 新建
+    edit: 编辑
+    show: 详情
+    form: 表单
+    js: js
+    scss: scss
+    admin: 添加到后台
+  natures:
+    label: ''
+    name: 英文属性名
+    type: 类型
+    title: 中文属性名
+    tag: 标签
 test:
   admins: *1
   users: *2

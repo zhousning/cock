@@ -18,6 +18,9 @@ class <%= @mpc %>Controller < ApplicationController
   <% if @new %> 
   def new
     @<%= @mu %> = <%= @mc %>.new
+    <% @fields.each do |field| %>
+    @<%= @mu %>.<%= field.pluralize %>.build
+    <% end %>
   end
   <% end %> 
 
@@ -60,11 +63,16 @@ class <%= @mpc %>Controller < ApplicationController
 
   private
     def <%= @mu %>_params
-      params.require(:<%= @mu %>).permit(<% @attrs.each_with_index do |attr, index| %> :<%= attr %><%= index == @attrs.size-1 ? '' : ','%><% end %><% if @enclosure %> , enclosures_attributes: enclosure_params<% end %>)
+      params.require(:<%= @mu %>).permit(<% @attrs.each_with_index do |attr, index| %> :<%= attr %><%= index == @attrs.size-1 ? '' : ','%><% end %><% if @enclosure %> , enclosures_attributes: enclosure_params<% end %><% @fields.each do |field| %>, <%= field.pluralize %>_attributes: <%= field %>_params<% end %>)
     end
   <% if @enclosure %>
     def enclosure_params
       [:id, :file, :_destroy]
+    end
+  <% end %>
+  <% @fields.each do |field| %>
+    def <%= field %>_params
+      [:id, :]
     end
   <% end %>
 end

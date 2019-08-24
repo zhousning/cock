@@ -23,6 +23,8 @@ class Rails::ItemGenerator < Rails::Generators::Base
 
   class_option :admin, :aliases => '-a', :type => :boolean, :default => true 
 
+  class_option :fields, :aliases => '-z', :type => :array, :default => []
+
   def generate_model
     attributes = columns.join(" ")
     generate "model", "#{model} #{attributes} --force"
@@ -53,20 +55,21 @@ class Rails::ItemGenerator < Rails::Generators::Base
     @js   = options[:js]
     @scss = options[:scss]
     @admin = options[:admin]
+    @fields = options[:fields]
 
     @attrs = []
     columns.each do |column|
       @attrs << column.slice(/[^:]+/)
     end
 
-    template 'controller.template', "app/controllers/#{controller_name}_controller.rb", @attrs, @mu, @mc, @mpc, @mpu, @enclosure, @index, @new, @edit, @show
+    template 'controller.template', "app/controllers/#{controller_name}_controller.rb", @attrs, @mu, @mc, @mpc, @mpu, @enclosure, @index, @new, @edit, @show, @fields
 
     if @index
       template 'index.template', "app/views/#{controller_name}/index.html.haml", @attrs, @mu, @mc, @mpc, @mpu, @enclosure
     end
 
     if @form
-      template '_form.template', "app/views/#{controller_name}/_form.html.haml", @attrs, @mu, @mc, @mpc, @mpu, @enclosure
+      template '_form.template', "app/views/#{controller_name}/_form.html.haml", @attrs, @mu, @mc, @mpc, @mpu, @enclosure, @fields
     end
 
     if @new
@@ -97,7 +100,11 @@ class Rails::ItemGenerator < Rails::Generators::Base
       template '_enclosure.template', "app/views/#{controller_name}/_enclosure_fields.html.haml"
     end
 
-    template 'model.template', "app/models/#{@mu}.rb", @attrs, @mu, @mc, @mpc, @mpu, @enclosure
+    @fields.each do |field|
+      template '_fields.template', "app/views/#{controller_name}/_#{field}_fields.html.haml"
+    end
+
+    template 'model.template', "app/models/#{@mu}.rb", @attrs, @mu, @mc, @mpc, @mpu, @enclosure, @fields
   end
 
   private

@@ -3,4 +3,8 @@ class <%= @mc %> < ActiveRecord::Base
   has_many :enclosures, :dependent => :destroy
   accepts_nested_attributes_for :enclosures, reject_if: :all_blank, allow_destroy: true
 <% end %>
+<% @fields.each do |field| %>
+  has_many :<%= field.pluralize %>, :dependent => :destroy
+  accepts_nested_attributes_for :<%= field.pluralize %>, reject_if: :all_blank, allow_destroy: true
+<% end %>
 end

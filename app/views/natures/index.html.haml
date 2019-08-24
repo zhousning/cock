@@ -1,0 +1,45 @@
+- provide(:title, t('.title'))
+
+- content_for :main_body do
+  .container-fluid
+    .row
+      .col-md-3
+        = render "layouts/system_search"
+      .col-md-2
+        = link_to "添加", new_nature_path, :class => "btn btn-info"
+    .row.buyer-table-ctn
+      .col-md-12
+        %table.table.text-center.table-bordered.table-list-search
+          %thead
+            %tr
+              %th #
+            
+              %th 
+                = Setting.natures.name
+              %th 
+                = Setting.natures.type
+              %th 
+                = Setting.natures.title
+              %th 
+                = Setting.natures.tag
+              %th
+          %tbody
+            - @natures.each_with_index do |nature, index|
+              %tr
+                %td
+                  = index+1
+              
+                %td
+                  = nature.name
+                %td
+                  = nature.type
+                %td
+                  = nature.title
+                %td
+                  = nature.tag
+                %td
+                  = link_to "查看", nature_path(nature), :class => "btn btn-primary btn-sm"
+                  = link_to "编辑", edit_nature_path(nature), :class => "btn btn-success btn-sm"
+                  = link_to "删除", nature, :method => :delete, :data => {:confirm => "确定删除当前角色吗?"}, :class => "btn btn-danger btn-sm"
+
+= render "layouts/control_panel"
