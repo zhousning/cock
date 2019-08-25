@@ -244,7 +244,8 @@ development:
     obj: 对象
   templates:
     label: ''
-    name: 名称
+    name: 英文名称
+    cn_name: 中文名称
     nest: 嵌套属性
     image: 图像
     index: 列表
@@ -261,6 +262,10 @@ development:
     type: 类型
     title: 中文属性名
     tag: 标签
+  birds:
+    label: 小鸟
+    name: 名字
+    age: 年龄
 test:
   admins: *1
   users: *2

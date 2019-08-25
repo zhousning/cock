@@ -68,6 +68,7 @@
                 %td
                   = link_to "查看", template_path(template), :class => "btn btn-primary btn-sm"
                   = link_to "编辑", edit_template_path(template), :class => "btn btn-success btn-sm"
+                  = link_to "生成", produce_template_path(template), :class => "btn btn-info btn-sm"
                   = link_to "删除", template, :method => :delete, :data => {:confirm => "确定删除当前角色吗?"}, :class => "btn btn-danger btn-sm"
 
 = render "layouts/control_panel"

@@ -51,6 +51,38 @@ class TemplatesController < ApplicationController
       render :edit
     end
   end
+
+  def produce
+    @template = Template.find(params[:id])
+    @natures = @template.natures
+
+    cond = "rails g item " + @template.name + " "
+    nature_str = ""
+    label = "-l "
+    tag = "-t "
+    @natures.each do |nature|
+      nature_str += nature.name + ":" + nature.data_type + " "
+      label += nature.title + " "
+      tag += nature.tag + " "
+    end
+    cond += nature_str + label + tag + " "
+
+    cond += "-n " + @template.cn_name + " " + 
+           "-i " + @template.image.to_s + " " +
+           "-x " + @template.index.to_s + " " +
+           "-w " + @template.new.to_s + " " +
+           "-e " + @template.edit.to_s + " " +
+           "-h " + @template.show.to_s + " " +
+           "-r " + @template.form.to_s + " " +
+           "-j " + @template.js.to_s + " " +
+           "-c " + @template.scss.to_s + " " +
+           "-a " + @template.admin.to_s + " "
+
+    cond += "-z " + @template.nest unless @template.nest.blank?
+    puts cond
+    exec cond
+    redirect_to template_path(@template) 
+  end
    
 
    
@@ -63,7 +95,7 @@ class TemplatesController < ApplicationController
 
   private
     def template_params
-      params.require(:template).permit( :name, :nest, :image, :index, :new, :edit, :show, :form, :js, :scss, :admin, natures_attributes: nature_params, relates_attributes: relate_params)
+      params.require(:template).permit( :name, :cn_name, :nest, :image, :index, :new, :edit, :show, :form, :js, :scss, :admin, natures_attributes: nature_params, relates_attributes: relate_params)
     end
   
   

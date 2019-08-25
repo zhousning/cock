@@ -12,7 +12,9 @@ Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
 
   resources :controls, :only => [:index]
-  resources :templates
+  resources :templates do
+    get :produce, :on => :member
+  end
 
   resources :systems, :only => [] do
     get :send_confirm_code, :on => :collection
