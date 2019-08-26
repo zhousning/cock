@@ -4,7 +4,7 @@
 #
 #  id          :integer          not null, primary key
 #  name        :string
-#  type        :string
+#  data_type   :string
 #  title       :string
 #  tag         :string
 #  template_id :integer

@@ -4,6 +4,7 @@
 #
 #  id         :integer          not null, primary key
 #  name       :string
+#  cn_name    :string
 #  nest       :string
 #  image      :boolean
 #  index      :boolean

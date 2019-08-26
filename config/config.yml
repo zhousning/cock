@@ -129,6 +129,8 @@ defaults:
     status_en_no: false
     status_yes: 是
     status_no: 否
+    default_str: ''
+    default_num: 0
   trade_orders: &16
     number: 订单编号
     price: 价格
@@ -264,7 +266,7 @@ development:
     tag: 标签
   birds:
     label: 小鸟
-    name: 名字
+    name: 名称
     age: 年龄
 test:
   admins: *1

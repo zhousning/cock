@@ -78,7 +78,13 @@ class TemplatesController < ApplicationController
            "-c " + @template.scss.to_s + " " +
            "-a " + @template.admin.to_s + " "
 
-    cond += "-z " + @template.nest unless @template.nest.blank?
+    cond += "-z " + @template.nest + " " unless @template.nest.blank?
+
+    cond += "-y "
+    @relates = @template.relates
+    @relates.each do |relate|
+      cond += relate.relate_type + ":" + relate.obj + " "
+    end
     puts cond
     exec cond
     redirect_to template_path(@template) 

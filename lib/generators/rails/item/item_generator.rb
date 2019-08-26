@@ -24,10 +24,29 @@ class Rails::ItemGenerator < Rails::Generators::Base
   class_option :admin, :aliases => '-a', :type => :boolean, :default => true 
 
   class_option :fields, :aliases => '-z', :type => :array, :default => []
+  class_option :relates, :aliases => '-y', :type => :array, :default => []
 
   def generate_model
-    attributes = columns.join(" ")
-    generate "model", "#{model} #{attributes} --force"
+    #attributes = columns.join(" ")
+    #generate "model", "#{model} #{attributes} --force"
+    #generate "migration", "create_#{model.pluralize} #{attributes}"
+    @mu = model.underscore
+    @mc = model.camelcase
+    @mpc = model.pluralize.camelcase
+    @mpu = model.pluralize.underscore
+    @enclosure = options[:image]
+    @fields = options[:fields]
+
+    @attrs = []
+    columns.each do |column|
+      @attrs << column.slice(/[^:]+/)
+    end
+
+    name = Time.now.strftime('%Y%m%d%H%M%S') + "_create_" + @mpu
+    @relates   = options[:relates]
+    @columns   = columns
+    template 'migration.template', "db/migrate/#{name}.rb", @mpc, @mpu, @relates, @columns
+    template 'model.template', "app/models/#{@mu}.rb", @attrs, @mu, @mc, @mpc, @mpu, @enclosure, @fields, @relates
   end
 
   def generate_setting
@@ -104,7 +123,6 @@ class Rails::ItemGenerator < Rails::Generators::Base
       template '_fields.template', "app/views/#{controller_name}/_#{field}_fields.html.haml"
     end
 
-    template 'model.template', "app/models/#{@mu}.rb", @attrs, @mu, @mc, @mpc, @mpu, @enclosure, @fields
   end
 
   private
