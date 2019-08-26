@@ -2,14 +2,9 @@
 
 - content_for :main_body do
   .container-fluid
-    .row
-      .col-md-3
-        = render "layouts/system_search"
-      .col-md-2
-        = link_to "添加", new_template_path, :class => "btn btn-info"
     .row.buyer-table-ctn
       .col-md-12
-        %table.table.text-center.table-bordered.table-list-search
+        %table.table.text-center.table-bordered.table-list-search{:'data-toggle' => "table", :"data-pagination"=>"true", :"data-search" => "true",:'data-advanced-search'=>"true", :'data-id-table'=>"advancedTable"}
           %thead
             %tr
               %th #
@@ -66,9 +61,13 @@
                 %td
                   = template.admin
                 %td
-                  = link_to "查看", template_path(template), :class => "btn btn-primary btn-sm"
-                  = link_to "编辑", edit_template_path(template), :class => "btn btn-success btn-sm"
-                  = link_to "生成", produce_template_path(template), :class => "btn btn-info btn-sm"
-                  = link_to "删除", template, :method => :delete, :data => {:confirm => "确定删除当前角色吗?"}, :class => "btn btn-danger btn-sm"
+                  = link_to template_path(template), :class => "text-muted" do
+                    = fa_icon "search"
+                  = link_to edit_template_path(template), :class => "text-muted" do
+                    = fa_icon "edit"
+                  = link_to template, :method => :delete, :data => {:confirm => "确定删除吗?"}, :class => "text-muted" do
+                    = fa_icon "trash"
+                  = link_to produce_template_path(template) do
+                    = fa_icon "wrench"
 
 = render "layouts/control_panel"

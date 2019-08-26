@@ -73,6 +73,7 @@ GEM
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 1.14.3, < 2)
       sassc-rails (>= 2.0.0)
+    bootstrap-table-rails (1.13.4)
     bootstrap3-datetimepicker-rails (4.17.47)
       momentjs-rails (>= 2.8.1)
     builder (3.2.3)
@@ -120,6 +121,8 @@ GEM
       tzinfo
     execjs (2.7.0)
     ffi (1.9.25)
+    font-awesome-rails (4.7.0.5)
+      railties (>= 3.2, < 6.1)
     formtastic (3.1.5)
       actionpack (>= 3.2.13)
     formtastic_i18n (0.6.0)
@@ -351,6 +354,7 @@ DEPENDENCIES
   alipay!
   annotate
   bootstrap (~> 4.3.1)
+  bootstrap-table-rails
   bootstrap3-datetimepicker-rails (~> 4.17.37)
   byebug
   cancancan
@@ -361,6 +365,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   dragonfly (~> 1.2.0)
+  font-awesome-rails
   gon
   haml-rails
   iconv

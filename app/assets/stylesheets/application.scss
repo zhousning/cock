@@ -1,7 +1,10 @@
 // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
+
 @import "bootstrap";
 @import 'bootstrap-datetimepicker';
+@import "bootstrap-table/bootstrap-table";
 @import "buttons";
+@import "font-awesome";
 @import "home";
 @import "users";
 @import "common";
@@ -11,4 +14,3 @@
 @import "public";
 @import "dashboard";
 @import "accounts";
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');

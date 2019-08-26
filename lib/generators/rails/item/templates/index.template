@@ -2,11 +2,6 @@
 
 - content_for :main_body do
   .container-fluid
-    .row
-      .col-md-3
-        = render "layouts/system_search"
-      .col-md-2
-        = link_to "添加", new_<%= @mu %>_path, :class => "btn btn-info"
     .row.buyer-table-ctn
       .col-md-12
         %table.table.text-center.table-bordered.table-list-search

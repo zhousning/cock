@@ -29,8 +29,27 @@
             %a.nav-link{:href => "#"}
               %span{"data-feather" => "file-text"}
               Current month
-    %main.col-md-9.ml-sm-auto.col-lg-10.pt-3.px-4{:role => "main"}
-      .d-flex.justify-content-between.flex-wrap.flex-md-nowrap.align-items-center.pb-2.mb-3.border-bottom
-        %h1.h2
+    %main.col-md-9.ml-sm-auto.col-lg-10.p-3.bg-light{:role => "main"}
+      - content_for :card_header do
+        %h5
           = t(controller_name + "." + action_name + '.title')
-      = yield :main_body 
+          = link_to "/#{controller_name}/new", :class => "pull-right text-secondary" do
+            = fa_icon "file", text: "新建", right: false 
+
+
+        -#
+          = fa_icon "quote-left 4x", class: "text-muted pull-left"
+
+          = content_tag(:li, fa_icon("dollar li", text: "Bulleted list item"))
+
+          = fa_stacked_icon "dollar", base: "square-o", class: "text-primary"
+
+          = fa_stacked_icon "dollar inverse", base: "circle", class: "fa-5x"
+
+          = fa_stacked_icon "terminal inverse", base: "square", class: "pull-right", text: "Hi!"
+
+
+
+      - content_for :card_body do
+        = yield :main_body 
+      = render "layouts/card"

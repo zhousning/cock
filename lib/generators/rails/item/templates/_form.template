@@ -1,6 +1,6 @@
 .container-fluid
   .row.justify-content-sm-center
-    .col-sm-6
+    .col-sm-12
       = form_for @<%= @mu %> do |f|
         - if @<%= @mu %>.errors.any?
           #error_explanation
@@ -34,8 +34,8 @@
           <% elsif options[:tag][index] == 'select' %>  = f.select :<%= attr %>, options_for_<%= attr %>, {:include_blank=>false}, {:class=>"form-control"}<% end %><% end %>
       <% if @enclosure %>
         .form-group.row
-          = f.label "主图", :class => "col-sm-3 control-label"
-          .col-sm-9
+          = f.label "主图", :class => "col-sm-1 control-label"
+          .col-sm-11
             = f.fields_for :enclosures do |enclosure|
               = render 'enclosure_fields', f: enclosure
             .links
@@ -43,8 +43,8 @@
       <% end %>
       <% @fields.each do |field| %>
         .form-group.row
-          = f.label "主图", :class => "col-sm-3 control-label"
-          .col-sm-9
+          = f.label "关联对象", :class => "col-sm-1 control-label"
+          .col-sm-11
             = f.fields_for :<%= field.pluralize %> do |<%= field %>|
               = render '<%= field %>_fields', f: <%= field %> 
             .links

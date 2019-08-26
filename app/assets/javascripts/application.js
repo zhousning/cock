@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
+//= require bootstrap-table/bootstrap-table
 //= require cocoon
 //= require kindeditor
 //= require_tree .
