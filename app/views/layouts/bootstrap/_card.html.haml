@@ -1,0 +1,11 @@
+.card.shadow.rounded-0
+  .card-header.bg-white
+    = yield :card_header
+  .card-body
+    = yield :card_body
+-#
+  - content_for :card_header do
+    card_header
+  - content_for :card_body do
+    card_body
+  = render "layouts/bootstrap/card"
