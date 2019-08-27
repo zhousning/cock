@@ -1,14 +1,14 @@
 ActiveAdmin.register User  do
 
-  permit_params  :phone, :password, :password_confirmation, :name, :identity, :alipay, :status
+  permit_params  :phone, :password, :password_confirmation, :name, :identity, :alipay, :status, role_ids: []
 
   actions :all, :except => [:destroy]
+
 
   menu label: "用户管理", :priority => 3 
   config.per_page = 20
   config.sort_order = "id_asc"
 
-  filter :citrine_level, :label => Setting.users.level, as: :select, collection: [Setting.levels.bronze, Setting.levels.silver, Setting.levels.gold, Setting.levels.platinum, Setting.levels.diamond] 
   filter :status, :label => Setting.users.status, as: :select, collection: [[Setting.users.opening_title, Setting.users.opening], [Setting.users.pending_title, Setting.users.pending], [Setting.users.passed_title, Setting.users.passed], [Setting.users.rejected_title,Setting.users.rejected]]
   filter :phone, :label => Setting.users.phone
   filter :password, :label => Setting.users.password
@@ -22,16 +22,13 @@ ActiveAdmin.register User  do
     selectable_column
     id_column
     
-    column Setting.users.level, :level do |f|
-      f.citrine.level
-    end
+    #column Setting.teams.children, :children do |f|
+    #  f.children.size
+    #end
+    #column Setting.users.inviter, :parent do |f|
+    #  f.parent.phone if f.parent
+    #end
     column Setting.users.phone, :phone
-    column Setting.teams.children, :children do |f|
-      f.children.size
-    end
-    column Setting.users.inviter, :parent do |f|
-      f.parent.phone if f.parent
-    end
     column Setting.users.name, :name
     column Setting.users.identity, :identity
     column Setting.users.alipay, :alipay
@@ -42,18 +39,20 @@ ActiveAdmin.register User  do
     column "创建时间", :created_at, :sortable=>:created_at do |f|
       f.created_at.strftime('%Y-%m-%d %H:%M:%S')
     end
-    actions
+    actions do
+      link_to(Setting.users.rejected_title, admin_password_path(:id))
+    end
   end
 
   form do |f|
     f.inputs "详情" do
-      
       f.input :phone, :label => Setting.users.phone 
       f.input :password, :label => Setting.users.password 
       f.input :password_confirmation, :label => Setting.users.password_confirmation 
       f.input :name, :label => Setting.users.name 
       f.input :identity, :label => Setting.users.identity 
       f.input :alipay, :label => Setting.users.alipay 
+      f.input :roles, :label => "角色分配", as: :check_boxes 
     end
     f.actions
   end
@@ -66,12 +65,12 @@ ActiveAdmin.register User  do
       row Setting.users.phone do
         user.phone
       end
-      row Setting.users.password do
-        user.password
-      end
-      row Setting.users.password_confirmation do
-        user.password_confirmation
-      end
+      #row Setting.users.password do
+      #  user.password
+      #end
+      #row Setting.users.password_confirmation do
+      #  user.password_confirmation
+      #end
       row Setting.users.name do
         user.name
       end
@@ -81,8 +80,14 @@ ActiveAdmin.register User  do
       row Setting.users.alipay do
         user.alipay
       end
-      row Setting.users.status do
-        user.state
+      #row Setting.users.status do
+      #  user.state
+      #end
+
+      row "角色" do
+        table_for user.roles do
+          column "角色详情",  :name
+        end
       end
 
       row "创建时间" do
@@ -91,10 +96,10 @@ ActiveAdmin.register User  do
       row "更新时间" do
         user.updated_at.strftime('%Y-%m-%d %H:%M:%S')
       end
-      row "审核" do
-        link_to(Setting.users.passed_title, pass_admin_user_path(user.id)) + "  " +
-        link_to(Setting.users.rejected_title, reject_admin_user_path(user.id))
-      end
+      #row "审核" do
+      #  link_to(Setting.users.passed_title, pass_admin_user_path(user.id)) + "  " +
+      #  link_to(Setting.users.rejected_title, reject_admin_user_path(user.id))
+      #end
     end
   end
 

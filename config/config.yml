@@ -25,6 +25,8 @@ defaults:
     level: 等级
     inviter: 邀请者
   roles: &3
+    label: 角色 
+    name: 名称
     class_name: Role
     super_admin: 超级管理员
     buyer: 客户信息管理
@@ -256,7 +258,7 @@ development:
     type: 关联类型
     obj: 对象
   templates:
-    label: ''
+    label: '模板'
     name: 英文名称
     cn_name: 中文名称
     nest: 嵌套属性
