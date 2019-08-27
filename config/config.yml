@@ -141,6 +141,7 @@ defaults:
     btn_new: 添加 
     btn_show: 详情
     btn_delete: 删除
+    btn_save: 保存
   trade_orders: &16
     number: 订单编号
     price: 价格

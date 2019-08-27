@@ -1,18 +1,16 @@
 - provide(:title, t('.title'))
 
 - content_for :main_body do
-  .mail-option
-    .chk-all
-      %label 角色名称： 
-      = @role.name
-    = link_to '编辑角色', edit_role_path(@role), :class => "btn btn-default"
+  %caption
+    = @role.name
+    已获权限
   %table.table.table-inbox.table-hover
     %tbody
       - @permissions.each do |permission|
-        %tr.unread
-          %td.inbox-small-cells
+        %tr
+          %td
             - permission.each do |p|
-              %label.checkbox-inline
+              %label.mx-5
                 = p.name
 
 = render "layouts/control_panel"

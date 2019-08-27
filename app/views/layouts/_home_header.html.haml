@@ -8,6 +8,8 @@
       %li.nav-item
         = link_to "登录", new_user_session_path, :class => "nav-link"
     - else
+      %li.nav-item
+        = link_to current_user.phone, nil, :class => "nav-link"
       - if current_user.super_admin?
         %li.nav-item
           = link_to "后台管理", admin_root_path, :class => "nav-link"

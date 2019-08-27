@@ -4,22 +4,11 @@
       .sidebar-sticky
         %ul.nav.flex-column
           %li.nav-item
-            = link_to nil, :class => "nav-link" do
-              %span{"data-feather" => "home"}
-            -#
-              = current_user.email
-              %span.sr-only (current)
-          %li.nav-item
           - if can? :index, Role 
             %li.nav-item
               = link_to roles_path, :class => "nav-link" do
                 %span{"data-feather" => "file"}
                 角色管理
-          - if can? :index, User
-            %li.nav-item
-              = link_to users_path, :class => "nav-link" do
-                %span{"data-feather" => "file"}
-                用户管理
         %h6.sidebar-heading.d-flex.justify-content-between.align-items-center.px-3.mt-4.mb-1.text-muted
           %span Saved reports
           %a.d-flex.align-items-center.text-muted{:href => "#"}
@@ -34,34 +23,19 @@
         %h5
           = t(controller_name + "." + action_name + '.title')
           - if "#{action_name}" == Setting.systems.index 
-            = link_to "/#{controller_name}/new", :class => "button button-border button-rounded button-primary pull-right text-secondary" do
+            = link_to "/#{controller_name}/new", :class => "button button-border button-rounded button-primary pull-right " do
               = fa_icon "plus", text: Setting.systems.btn_new, right: false 
           - elsif "#{action_name}" == Setting.systems.new 
-            = link_to "/#{controller_name}", :class => "button button-border button-rounded button-caution pull-right text-secondary" do
+            = link_to "/#{controller_name}", :class => "button button-border button-rounded button-caution pull-right " do
               = fa_icon " chevron-left", text: Setting.systems.btn_back, right: false 
           - elsif "#{action_name}" == Setting.systems.show
-            = link_to "/#{controller_name}", :class => "button button-border button-rounded button-caution pull-right text-secondary" do
+            = link_to "/#{controller_name}", :class => "button button-border button-rounded button-caution pull-right " do
               = fa_icon " chevron-left", text: Setting.systems.btn_back, right: false 
-            = link_to "#{request.url}/edit", :class => "button button-border button-rounded button-action pull-right text-secondary mr-3" do
+            = link_to "#{request.url}/edit", :class => "button button-border button-rounded button-action pull-right  mr-3" do
               = fa_icon "edit", text: Setting.systems.btn_edit, right: false 
           - elsif "#{action_name}" == Setting.systems.edit
-            = link_to "#{request.url}".sub("edit", ""), :class => "button button-border button-rounded button-caution pull-right text-secondary" do
+            = link_to "#{request.url}".sub("edit", ""), :class => "button button-border button-rounded button-caution pull-right " do
               = fa_icon " chevron-left", text: Setting.systems.btn_back, right: false 
-
-
-        -#
-          = fa_icon "quote-left 4x", class: "text-muted pull-left"
-
-          = content_tag(:li, fa_icon("dollar li", text: "Bulleted list item"))
-
-          = fa_stacked_icon "dollar", base: "square-o", class: "text-primary"
-
-          = fa_stacked_icon "dollar inverse", base: "circle", class: "fa-5x"
-
-          = fa_stacked_icon "terminal inverse", base: "square", class: "pull-right", text: "Hi!"
-
-
-
       - content_for :card_body do
         = yield :main_body 
       = render "layouts/bootstrap/card"
