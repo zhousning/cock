@@ -33,8 +33,20 @@
       - content_for :card_header do
         %h5
           = t(controller_name + "." + action_name + '.title')
-          = link_to "/#{controller_name}/new", :class => "pull-right text-secondary" do
-            = fa_icon "file", text: "新建", right: false 
+          - if "#{action_name}" == Setting.systems.index 
+            = link_to "/#{controller_name}/new", :class => "button button-border button-rounded button-primary pull-right text-secondary" do
+              = fa_icon "plus", text: Setting.systems.btn_new, right: false 
+          - elsif "#{action_name}" == Setting.systems.new 
+            = link_to "/#{controller_name}", :class => "button button-border button-rounded button-caution pull-right text-secondary" do
+              = fa_icon " chevron-left", text: Setting.systems.btn_back, right: false 
+          - elsif "#{action_name}" == Setting.systems.show
+            = link_to "/#{controller_name}", :class => "button button-border button-rounded button-caution pull-right text-secondary" do
+              = fa_icon " chevron-left", text: Setting.systems.btn_back, right: false 
+            = link_to "#{request.url}/edit", :class => "button button-border button-rounded button-action pull-right text-secondary mr-3" do
+              = fa_icon "edit", text: Setting.systems.btn_edit, right: false 
+          - elsif "#{action_name}" == Setting.systems.edit
+            = link_to "#{request.url}".sub("edit", ""), :class => "button button-border button-rounded button-caution pull-right text-secondary" do
+              = fa_icon " chevron-left", text: Setting.systems.btn_back, right: false 
 
 
         -#

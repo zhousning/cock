@@ -30,7 +30,6 @@
                 = Setting.templates.scss
               %th 
                 = Setting.templates.admin
-              %th
           %tbody
             %tr
             
@@ -56,9 +55,6 @@
                 = @template.scss
               %td
                 = @template.admin
-              %td
-                = link_to '编辑', edit_template_path(@template), :class => "btn btn-success"
-                = link_to '返回', templates_path, :class => "btn btn-danger"
     
 
 = render "layouts/control_panel"

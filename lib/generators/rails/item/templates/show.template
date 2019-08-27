@@ -10,15 +10,11 @@
             <% @attrs.each do |attr| %>
               %th 
                 = Setting.<%= @mpu %>.<%= attr %><% end %>
-              %th
           %tbody
             %tr
             <% @attrs.each do |attr| %>
               %td
                 = @<%= @mu %>.<%= attr %><% end %>
-              %td
-                = link_to '编辑', edit_<%= @mu %>_path(@<%= @mu %>), :class => "btn btn-success"
-                = link_to '返回', <%= @mpu %>_path, :class => "btn btn-danger"
     <% if @enclosure %>
       .col-md-12
         - @<%= @mu %>.enclosures.each do |e|

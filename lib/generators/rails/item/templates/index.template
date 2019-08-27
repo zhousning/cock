@@ -1,28 +1,33 @@
 - provide(:title, t('.title'))
 
 - content_for :main_body do
-  .container-fluid
-    .row.buyer-table-ctn
+  .container-fluid.p-0
+    .row
       .col-md-12
-        %table.table.text-center.table-bordered.table-list-search
-          %thead
+        %table.text-center.table-bordered.table-sm{:'data-toggle' => "table", :"data-pagination"=>"true", :"data-search" => "true",:'data-advanced-search'=>"true", :'data-id-table'=>"advancedTable"}
+          %thead.thead-light
             %tr
-              %th #
+              %th{:scope => "col"} #
             <% @attrs.each do |attr| %>
-              %th 
+              %th{:scope => "col"}
                 = Setting.<%= @mpu %>.<%= attr %><% end %>
-              %th
+              %th{:scope => "col"}
           %tbody
             - @<%= @mpu %>.each_with_index do |<%= @mu %>, index|
               %tr
-                %td
+                %td{:scope => "row"}
                   = index+1
               <% @attrs.each do |attr| %>
                 %td
                   = <%= @mu %>.<%= attr %><% end %>
                 %td
-                  = link_to "查看", <%= @mu %>_path(<%= @mu %>), :class => "btn btn-primary btn-sm"
-                  = link_to "编辑", edit_<%= @mu %>_path(<%= @mu %>), :class => "btn btn-success btn-sm"
-                  = link_to "删除", <%= @mu  %>, :method => :delete, :data => {:confirm => "确定删除当前角色吗?"}, :class => "btn btn-danger btn-sm"
+                  .container-fluid
+                    .row
+                      = link_to <%= @mu %>_path(<%= @mu %>), :class => "text-info col" do
+                        = fa_icon "search"
+                      = link_to edit_<%= @mu %>_path(<%= @mu %>), :class => "text-success col" do
+                        = fa_icon "edit"
+                      = link_to <%= @mu  %>, :method => :delete, :data => {:confirm => "确定删除吗?"}, :class => "text-danger col" do
+                        = fa_icon "trash"
 
 = render "layouts/control_panel"

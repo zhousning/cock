@@ -12,8 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require popper
 //= require bootstrap-sprockets
 //= require bootstrap-table/bootstrap-table
+//= require bootstrap-table/locale/bootstrap-table-zh-CN
 //= require cocoon
 //= require kindeditor
 //= require_tree .

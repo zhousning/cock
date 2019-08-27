@@ -375,6 +375,7 @@ DEPENDENCIES
   mini_magick
   mini_racer
   newrelic_rpm
+  popper_js (~> 1.14.5)
   rails (= 4.2.3)
   rails_kindeditor
   rest-client

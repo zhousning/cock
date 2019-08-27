@@ -1,43 +1,42 @@
 - provide(:title, t('.title'))
 
 - content_for :main_body do
-  .container-fluid
-    .row.buyer-table-ctn
+  .container-fluid.p-0
+    .row
       .col-md-12
-        %table.table.text-center.table-bordered.table-list-search{:'data-toggle' => "table", :"data-pagination"=>"true", :"data-search" => "true",:'data-advanced-search'=>"true", :'data-id-table'=>"advancedTable"}
-          %thead
+        %table.text-center.table-bordered.table-sm{:'data-toggle' => "table", :"data-pagination"=>"true", :"data-search" => "true",:'data-advanced-search'=>"true", :'data-id-table'=>"advancedTable"}
+          %thead.thead-light
             %tr
-              %th #
+              %th{:scope => "col"} #
             
-              %th 
+              %th{:scope => "col"}
                 = Setting.templates.name
-              %th 
+              %th{:scope => "col"}
                 = Setting.templates.nest
-              %th 
+              %th{:scope => "col"}
                 = Setting.templates.image
-              %th 
+              %th{:scope => "col"}
                 = Setting.templates.index
-              %th 
+              %th{:scope => "col"}
                 = Setting.templates.new
-              %th 
+              %th{:scope => "col"}
                 = Setting.templates.edit
-              %th 
+              %th{:scope => "col"}
                 = Setting.templates.show
-              %th 
+              %th{:scope => "col"}
                 = Setting.templates.form
-              %th 
+              %th{:scope => "col"}
                 = Setting.templates.js
-              %th 
+              %th{:scope => "col"}
                 = Setting.templates.scss
-              %th 
+              %th{:scope => "col"}
                 = Setting.templates.admin
-              %th
+              %th{:scope => "col"}
           %tbody
             - @templates.each_with_index do |template, index|
               %tr
-                %td
+                %td{:scope => "row"}
                   = index+1
-              
                 %td
                   = template.name
                 %td
@@ -61,13 +60,15 @@
                 %td
                   = template.admin
                 %td
-                  = link_to template_path(template), :class => "text-muted" do
-                    = fa_icon "search"
-                  = link_to edit_template_path(template), :class => "text-muted" do
-                    = fa_icon "edit"
-                  = link_to template, :method => :delete, :data => {:confirm => "确定删除吗?"}, :class => "text-muted" do
-                    = fa_icon "trash"
-                  = link_to produce_template_path(template) do
-                    = fa_icon "wrench"
+                  .container-fluid
+                    .row
+                      = link_to template_path(template), :class => "text-info col" do
+                        = fa_icon "search"
+                      = link_to edit_template_path(template), :class => "text-success col" do
+                        = fa_icon "edit"
+                      = link_to template, :method => :delete, :data => {:confirm => "确定删除吗?"}, :class => "text-danger col" do
+                        = fa_icon "trash"
+                      = link_to produce_template_path(template), :class => "text-primary col" do
+                        = fa_icon "wrench"
 
 = render "layouts/control_panel"

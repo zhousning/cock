@@ -14,15 +14,13 @@
             %button{:disabled => "disabled", :type => "button"}
               %span.fa.fa-search
 %main{:role => "main"}
-  = render "layouts/bootstrap/spinner"
-  -#
-    - content_for :carousel_first_img do
-      = image_tag "alipay.jpg", :class => "d-block w-100"
-    - content_for :carousel_second_img do
-      = image_tag "alipay.jpg", :class => "d-block w-100"
-    - content_for :carousel_third_img do
-      = image_tag "alipay.jpg", :class => "d-block w-100"
-    = render "layouts/bootstrap/carousel"
+  - content_for :carousel_first_img do
+    = image_tag "alipay.jpg", :class => "d-block w-100"
+  - content_for :carousel_second_img do
+    = image_tag "alipay.jpg", :class => "d-block w-100"
+  - content_for :carousel_third_img do
+    = image_tag "alipay.jpg", :class => "d-block w-100"
+  = render "layouts/bootstrap/carousel"
   .album.py-5.bg-light
     .container
       .row

@@ -56,6 +56,7 @@ gem 'bootstrap', '~> 4.3.1'
 
 gem "bootstrap-table-rails"
 
+gem 'popper_js', '~> 1.14.5'
 
 gem 'haml-rails'
 

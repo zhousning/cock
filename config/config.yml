@@ -131,6 +131,16 @@ defaults:
     status_no: 否
     default_str: ''
     default_num: 0
+    index: index
+    new: new
+    show: show
+    delete: delete
+    edit: edit
+    btn_back: 返回
+    btn_edit: 编辑
+    btn_new: 添加 
+    btn_show: 详情
+    btn_delete: 删除
   trade_orders: &16
     number: 订单编号
     price: 价格
