@@ -67,6 +67,18 @@ zh-CN:
     edit:
       title: "编辑角色"
 
+  templates:
+    index: 
+      title: 模板列表
+    new: 
+      title: 新建模板
+    edit:
+      title: 编辑模板
+    show:
+      title: 查看模板
+    destroy:
+      title: 删除模板
+
   buyers:
     manage:
       title: "客户管理"
@@ -180,3 +192,10 @@ zh-CN:
     index:
       title:
         我的茶叶
+  authorities:
+    roles:
+      manage:
+        title: "管理角色"
+    templates:
+      manage:
+        title: 管理模板

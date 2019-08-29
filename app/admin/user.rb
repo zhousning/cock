@@ -1,6 +1,7 @@
 ActiveAdmin.register User  do
 
-  permit_params  :phone, :password, :password_confirmation, :name, :identity, :alipay, :status, role_ids: []
+  #permit_params  :phone, :password, :password_confirmation, :name, :identity, :alipay, :status, role_ids: []
+  permit_params  :phone, :name, :identity, :alipay, :status, role_ids: []
 
   actions :all, :except => [:destroy]
 
@@ -32,23 +33,23 @@ ActiveAdmin.register User  do
     column Setting.users.name, :name
     column Setting.users.identity, :identity
     column Setting.users.alipay, :alipay
-    column Setting.users.status, :status do |f|
-      f.state
-    end
+    #column Setting.users.status, :status do |f|
+    #  f.state
+    #end
 
     column "创建时间", :created_at, :sortable=>:created_at do |f|
       f.created_at.strftime('%Y-%m-%d %H:%M:%S')
     end
     actions do
-      link_to(Setting.users.rejected_title, admin_password_path(:id))
+      #link_to "分配角色", admin_assign_path
     end
   end
 
   form do |f|
     f.inputs "详情" do
       f.input :phone, :label => Setting.users.phone 
-      f.input :password, :label => Setting.users.password 
-      f.input :password_confirmation, :label => Setting.users.password_confirmation 
+      #f.input :password, :label => Setting.users.password 
+      #f.input :password_confirmation, :value => "3423", :label => Setting.users.password_confirmation 
       f.input :name, :label => Setting.users.name 
       f.input :identity, :label => Setting.users.identity 
       f.input :alipay, :label => Setting.users.alipay 

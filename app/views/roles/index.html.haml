@@ -27,5 +27,9 @@
                         = fa_icon "edit"
                       = link_to role, :method => :delete, :data => {:confirm => "确定删除吗?"}, :class => "text-danger col" do
                         = fa_icon "trash"
+                    -#
+                      - if can? :show, controller_name.singularize.capitalize.constantize
+                      - if can? :update, controller_name.singularize.capitalize.constantize
+                      - if can? :destroy, controller_name.singularize.capitalize.constantize
 
 = render "layouts/control_panel"

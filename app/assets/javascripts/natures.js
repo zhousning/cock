@@ -1,3 +1,0 @@
-$(".natures").ready(function() {
-
-});

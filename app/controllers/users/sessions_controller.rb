@@ -1,5 +1,4 @@
 class Users::SessionsController < Devise::SessionsController
-  layout "application_no_header"
   #layout "application_mobile"
 # before_action :configure_sign_in_params, only: [:create]
 

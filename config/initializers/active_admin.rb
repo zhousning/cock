@@ -227,8 +227,8 @@ ActiveAdmin.setup do |config|
   config.namespace :admin do |admin|
     admin.build_menu :default do |menu|
       #menu.add label: "商品", url: "http://www.baidu.com", html_options: { target: :blank }
-      menu.add label: "商品管理", url: "/wares" 
-      menu.add label: "公告管理", url: "/notices" 
+      #menu.add label: "商品管理", url: "/wares" 
+      #menu.add label: "公告管理", url: "/notices" 
     end
   end
 

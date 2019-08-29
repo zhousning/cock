@@ -1,0 +1,55 @@
+%nav.col-md-2.d-none.d-md-block.sidebar.shadow
+  .sidebar-sticky.text-center
+    = link_to controls_path, :class => "navbar-brand bg-transparent shadow-none" do
+      = image_tag "logo.svg", :width => "100px"
+    #accordionExample.accordion
+      .card.border-0.rounded-0
+        #headingOne.card-header.p-0.bg-transparent
+          %h6.m-0
+            = link_to nil,  {:class => "d-flex p-3 text-decoration-none", :"aria-controls" => "collapseOne", :"aria-expanded" => "true", :"data-target" => "#collapseOne", :"data-toggle" => "collapse"} do
+              = fa_icon "area-chart", text: "管理面板", class: "mx-3"
+              
+        #collapseOne.collapse.show{"aria-labelledby" => "headingOne", "data-parent" => "#accordionExample"}
+          .card-body
+            %ul.list-group.list-group-flush
+              = link_to templates_path, :class => "list-group-item list-group-item-action border-0 text-left pl-4" do
+                = fa_icon "area-chart", text: "模板管理", class: "mx-3"
+                %span.badge.badge-primary.badge-pill.pull-right
+                  14
+              = link_to roles_path, :class => "list-group-item list-group-item-action border-0 text-left pl-4" do
+                = fa_icon "area-chart", text: "角色管理", class: "mx-3"
+                %span.badge.badge-primary.badge-pill.pull-right
+                  14
+      .card.border-0.rounded-0
+        #headingTwo.card-header.p-0.bg-transparent
+          %h6.m-0
+            = link_to nil,  {:class => "d-flex p-3 text-decoration-none", :"aria-controls" => "collapseTwo", :"aria-expanded" => "true", :"data-target" => "#collapseTwo", :"data-toggle" => "collapse"} do
+              = fa_icon "area-chart", text: "管理面板", class: "mx-3"
+        #collapseTwo.collapse{"aria-labelledby" => "headingTwo", "data-parent" => "#accordionExample"}
+          .card-body
+            %ul.list-group.list-group-flush
+              = link_to nil, :class => "list-group-item list-group-item-action border-0 text-left pl-4" do
+                = fa_icon "area-chart", text: "管理面板", class: "mx-3"
+                %span.badge.badge-success.badge-pill.pull-right
+                  14
+              = link_to nil, :class => "list-group-item list-group-item-action border-0 text-left pl-4" do
+                = fa_icon "area-chart", text: "管理面板", class: "mx-3"
+                %span.badge.badge-success.badge-pill.pull-right
+                  14
+      .card.border-0.rounded-0
+        #headingThree.card-header.p-0.bg-transparent
+          %h6.m-0
+            = link_to nil,  {:class => "d-flex p-3 text-decoration-none", :"aria-controls" => "collapseThree", :"aria-expanded" => "true", :"data-target" => "#collapseThree", :"data-toggle" => "collapse"} do
+              = fa_icon "area-chart", text: "管理面板", class: "mx-3"
+              
+        #collapseThree.collapse{"aria-labelledby" => "headingThree", "data-parent" => "#accordionExample"}
+          .card-body
+            %ul.list-group.list-group-flush
+              = link_to nil, :class => "list-group-item list-group-item-action border-0 text-left pl-4" do
+                = fa_icon "area-chart", text: "管理面板", class: "mx-3"
+                %span.badge.badge-danger.badge-pill.pull-right
+                  14
+              = link_to nil, :class => "list-group-item list-group-item-action border-0 text-left pl-4" do
+                = fa_icon "area-chart", text: "管理面板", class: "mx-3"
+                %span.badge.badge-danger.badge-pill.pull-right
+                  14

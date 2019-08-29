@@ -1,6 +1,6 @@
 class <%= @mpc %>Controller < ApplicationController
   layout "application_control"
-  before_action :authenticate_user!
+  before_filter :authenticate_user!
   load_and_authorize_resource
 
   <% if @index %> 

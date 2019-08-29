@@ -12,10 +12,11 @@ namespace 'db' do
     arr.each do |controller|
       puts controller.permission
       if controller.permission
-        manage_title = I18n.t(controller.controller_name + ".manage.title")
-        write_permission(controller.permission, "manage", manage_title, manage_title) 
+        manage_title = I18n.t("authorities." + controller.controller_name + ".manage.title")
+        write_permission(controller.permission, "manage", manage_title, manage_title) if (/translation missing/ =~ manage_title).nil?
         controller.action_methods.each do |method|
-          if method =~ /^([A-Za-z\d*]+)+([\w]*)+([A-Za-z\d*]+)$/
+          title = I18n.t("authorities." + controller.controller_name + "." + method + ".title")
+          if method =~ /^([A-Za-z\d*]+)+([\w]*)+([A-Za-z\d*]+)$/ && (/translation missing/ =~ title).nil?
             name, cancan_action, action_desc = eval_cancan_action(controller.controller_name, method)
             write_permission(controller.permission, cancan_action, name, action_desc)  
           end
@@ -30,17 +31,23 @@ end
 
 def eval_cancan_action(controller_name, action)
   case action.to_s
+  when "index"
+    name = I18n.t("authorities." + controller_name + ".index.title")
+    cancan_action = "index"
+  when "show", "search"
+    name = I18n.t("authorities." + controller_name + ".show.title")
+    cancan_action = "show"
   when "new", "create"
-    name = I18n.t(controller_name + ".new.title")
+    name = I18n.t("authorities." + controller_name + ".new.title")
     cancan_action = "create"
   when "edit", "update"
-    name = I18n.t(controller_name + ".edit.title")
-    cancan_action = "edit"
+    name = I18n.t("authorities." + controller_name + ".edit.title")
+    cancan_action = "update"
   when "delete", "destroy"
-    name = "删除" 
-    cancan_action = "destroy"
+    name = I18n.t("authorities." + controller_name + ".destroy.title")
+    cancan_action = "delete"
   else
-    name = I18n.t(controller_name + "." + action.to_s + ".title")
+    name = I18n.t("authorities." + controller_name + "." + action + ".title")
     cancan_action = action.to_s
   end
   action_desc = name 

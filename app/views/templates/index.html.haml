@@ -62,12 +62,15 @@
                 %td
                   .container-fluid
                     .row
-                      = link_to template_path(template), :class => "text-info col" do
-                        = fa_icon "search"
-                      = link_to edit_template_path(template), :class => "text-success col" do
-                        = fa_icon "edit"
-                      = link_to template, :method => :delete, :data => {:confirm => "确定删除吗?"}, :class => "text-danger col" do
-                        = fa_icon "trash"
+                      - if can? :show, controller_name.singularize.capitalize.constantize
+                        = link_to template_path(template), :class => "text-info col" do
+                          = fa_icon "search"
+                      - if can? :update, controller_name.singularize.capitalize.constantize
+                        = link_to edit_template_path(template), :class => "text-success col" do
+                          = fa_icon "edit"
+                      - if can? :destroy, controller_name.singularize.capitalize.constantize
+                        = link_to template, :method => :delete, :data => {:confirm => "确定删除吗?"}, :class => "text-danger col" do
+                          = fa_icon "trash"
                       = link_to produce_template_path(template), :class => "text-primary col" do
                         = fa_icon "wrench"
 

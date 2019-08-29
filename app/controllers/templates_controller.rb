@@ -1,5 +1,6 @@
 class TemplatesController < ApplicationController
   layout "application_control"
+  #load_and_authorize_resource
 
    
   def index

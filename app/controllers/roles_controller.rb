@@ -1,8 +1,7 @@
 class RolesController < ApplicationController
   layout "application_control"
-  before_action :authenticate_user!
-  load_resource
-  before_filter :is_super_admin?
+  load_and_authorize_resource :except => [:show]
+  #before_filter :is_super_admin?
 
   def new
     @role = Role.new

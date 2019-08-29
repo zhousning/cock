@@ -52,46 +52,46 @@ class User < ActiveRecord::Base
     false
   end
 
-  before_create :build_default_data
-  def build_default_data
-    build_account
-  end
+  #before_create :build_default_data
+  #def build_default_data
+  #  build_account
+  #end
 
-  before_save :store_unique_number
-  def store_unique_number
-    if self.number == ""
-      self.number = Time.now.to_i.to_s + "%04d" % [rand(10000)]
-    end
-  end
+  #before_save :store_unique_number
+  #def store_unique_number
+  #  if self.number == ""
+  #    self.number = Time.now.to_i.to_s + "%04d" % [rand(10000)]
+  #  end
+  #end
 
-  after_create :set_qrcode
-  def set_qrcode
-    invite_link = Rails.application.routes.url_helpers.new_user_registration_url(:host => Setting.systems.host, :inviter=>self.number)
-    qr_code_img = RQRCode::QRCode.new(invite_link).to_img.resize(300, 300)
-    update_attribute :qr_code, qr_code_img.to_string
-  end
+  #after_create :set_qrcode
+  #def set_qrcode
+  #  invite_link = Rails.application.routes.url_helpers.new_user_registration_url(:host => Setting.systems.host, :inviter=>self.number)
+  #  qr_code_img = RQRCode::QRCode.new(invite_link).to_img.resize(300, 300)
+  #  update_attribute :qr_code, qr_code_img.to_string
+  #end
 
-  STATUS = %w(opening, pending, rejected, passed)
-  STATUS_CODE = %w(0, 1, 2, 3)
-  #validates_inclusion_of :status, :in => STATUS_CODE
+  #STATUS = %w(opening, pending, rejected, passed)
+  #STATUS_CODE = %w(0, 1, 2, 3)
+  ##validates_inclusion_of :status, :in => STATUS_CODE
 
-  STATUS.each do |status|
-    define_method "#{status}?" do
-      self.status == Setting.users.status
-    end
-  end
+  #STATUS.each do |status|
+  #  define_method "#{status}?" do
+  #    self.status == Setting.users.status
+  #  end
+  #end
 
-  def state
-    if self.status == Setting.users.opening
-      Setting.users.opening_title
-    elsif self.status == Setting.users.pending
-      Setting.users.pending_title
-    elsif self.status == Setting.users.rejected
-      Setting.users.rejected_title
-    elsif self.status == Setting.users.passed
-      Setting.users.passed_title
-    end
-  end
+  #def state
+  #  if self.status == Setting.users.opening
+  #    Setting.users.opening_title
+  #  elsif self.status == Setting.users.pending
+  #    Setting.users.pending_title
+  #  elsif self.status == Setting.users.rejected
+  #    Setting.users.rejected_title
+  #  elsif self.status == Setting.users.passed
+  #    Setting.users.passed_title
+  #  end
+  #end
 
   def produce_authc
     update_attribute :authc_number, Time.now.to_i.to_s + "%04d" % [rand(10000)]
@@ -125,8 +125,6 @@ class User < ActiveRecord::Base
 
   def assign_default_role
     #self.add_role Setting.roles.buyer
-    #self.add_role Setting.roles.tax_category
-    #self.add_role Setting.roles.invoice
   end
 
   #def create_tree_leaf

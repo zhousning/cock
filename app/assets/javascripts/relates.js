@@ -1,3 +1,0 @@
-$(".relates").ready(function() {
-
-});
