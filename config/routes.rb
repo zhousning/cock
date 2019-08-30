@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     get :produce, :on => :member
   end
 
+  resources :notices
+
   resources :systems, :only => [] do
     get :send_confirm_code, :on => :collection
   end

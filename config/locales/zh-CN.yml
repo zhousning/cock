@@ -1,11 +1,11 @@
 zh-CN:
   layouts:
     application:
-      site_title: "茶源世界"
+      site_title: "红宝石"
     application_control:
-      site_title: "茶源世界"
+      site_title: "红宝石"
     application_mobile:
-      site_title: "茶源世界"
+      site_title: "红宝石"
 
   home:
     index:
@@ -183,7 +183,7 @@ zh-CN:
   trees:
     index:
       title:
-        茶源世界
+        红宝石
   pick_records:
     index:
       title:

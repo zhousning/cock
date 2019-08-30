@@ -81,10 +81,12 @@ class TemplatesController < ApplicationController
 
     cond += "-z " + @template.nest + " " unless @template.nest.blank?
 
-    cond += "-y "
     @relates = @template.relates
-    @relates.each do |relate|
-      cond += relate.relate_type + ":" + relate.obj + " "
+    unless @relates.blank?
+      cond += "-y "
+      @relates.each do |relate|
+        cond += relate.relate_type + ":" + relate.obj + " "
+      end
     end
     puts cond
     exec cond

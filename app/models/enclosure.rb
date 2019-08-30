@@ -10,8 +10,7 @@
 #
 
 class Enclosure < ActiveRecord::Base
-  belongs_to :buyer
-  belongs_to :bird
+  belongs_to :notice
 
   mount_uploader :file, EnclosureUploader
 end
