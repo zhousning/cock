@@ -1,6 +1,6 @@
 $(".registrations, .passwords").ready(function() {
   $("#send-confirm-code").click(function(){
-    var phone = $("#user_phone").val();
+    var phone = $("#inputPhone").val();
     if(!(/^1[34578]\d{9}$/.test(phone))){ 
       alert("手机号码有误，请重填");  
       return false; 
@@ -28,6 +28,6 @@ $(".registrations, .passwords").ready(function() {
   });
 });
 
-$(".users.mobile_authc_new").ready(function() {
-  $("#authc-modal-btn").click();
-});
+//$(".users.mobile_authc_new").ready(function() {
+//  $("#authc-modal-btn").click();
+//});

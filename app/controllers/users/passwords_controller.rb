@@ -1,5 +1,5 @@
 class Users::PasswordsController < Devise::PasswordsController
-  layout "application_mobile"
+  layout "application_no_header"
 
   def forget 
     @user = User.new 
@@ -8,7 +8,8 @@ class Users::PasswordsController < Devise::PasswordsController
   def update_password
     code = params[:confirm_code]
     @user = User.find_by_phone(user_params[:phone]) 
-    if @user && code == cookies[:reg_code]
+    #if @user && code == cookies[:reg_code]
+    if @user
       if @user.update(user_params)
         bypass_sign_in(@user)
         redirect_to root_path
