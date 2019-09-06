@@ -101,7 +101,12 @@ gem 'alipay', :git=>'https://github.com/zhousning/alipay.git'
 
 #gem 'wx_pay'
 
-gem 'lazy_high_charts'
+#gem 'lazy_high_charts'
+
+gem "chartkick"
+
+gem 'groupdate'
+
 
 #gem 'kaminari'
 

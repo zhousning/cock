@@ -199,3 +199,6 @@ zh-CN:
     templates:
       manage:
         title: 管理模板
+  statistics:
+    index:
+      title: 数据统计

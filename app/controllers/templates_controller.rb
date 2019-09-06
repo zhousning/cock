@@ -58,15 +58,18 @@ class TemplatesController < ApplicationController
     @natures = @template.natures
 
     cond = "rails g item " + @template.name + " "
-    nature_str = ""
-    label = "-l "
-    tag = "-t "
-    @natures.each do |nature|
-      nature_str += nature.name + ":" + nature.data_type + " "
-      label += nature.title + " "
-      tag += nature.tag + " "
+
+    unless @natures.blank?
+      nature_str = ""
+      label = "-l "
+      tag = "-t "
+      @natures.each do |nature|
+        nature_str += nature.name + ":" + nature.data_type + " "
+        label += nature.title + " "
+        tag += nature.tag + " "
+      end
+      cond += nature_str + label + tag + " "
     end
-    cond += nature_str + label + tag + " "
 
     cond += "-n " + @template.cn_name + " " + 
            "-i " + @template.image.to_s + " " +

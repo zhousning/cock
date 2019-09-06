@@ -284,6 +284,8 @@ development:
     label: 小鸟
     name: 名称
     age: 年龄
+  statistics:
+    label: 数据统计
 test:
   admins: *1
   users: *2

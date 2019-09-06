@@ -18,6 +18,16 @@ Rails.application.routes.draw do
 
   resources :notices
 
+  resources :statistics, :only => [:index] do
+    get :line, :on => :collection
+    get :series, :on => :collection
+    get :column, :on => :collection
+    get :pie, :on => :collection
+    get :bar, :on => :collection
+    get :area, :on => :collection
+    get :scatter, :on => :collection
+  end
+
   resources :systems, :only => [] do
     get :send_confirm_code, :on => :collection
   end
