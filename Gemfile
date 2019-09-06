@@ -84,6 +84,8 @@ gem 'iconv'
 
 gem 'creek'
 
+gem 'write_xlsx'
+
 gem 'carrierwave'
 gem 'mini_magick'
 
