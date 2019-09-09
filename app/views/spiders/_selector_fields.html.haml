@@ -1,0 +1,19 @@
+.nested-fields
+  .form-group
+    .field.d-inline
+      .form-group.row
+        .col-sm-6
+          = f.text_field :name, :class => "form-control", :placeholder => Setting.selectors.name
+        .col-sm-2
+          = f.text_field :title, :class => "form-control", :placeholder => Setting.selectors.title
+        
+        = f.label Setting.selectors.file, :class => "col-sm-1 text-right"
+        .col-sm-2
+          .form-check.form-check-inline
+            = f.radio_button :file, Setting.systems.status_en_yes, :class => "form-check-input", :checked => "checked"
+            = f.label Setting.systems.status_yes, :class => "form-check-label"
+          .form-check.form-check-inline
+            = f.radio_button :file, Setting.systems.status_en_no, :class => "form-check-input"
+            = f.label Setting.systems.status_no, :class => "form-check-label"
+        .col-sm-1
+          = link_to_remove_association "删除", f, :class => "btn btn-danger btn-sm d-inline"

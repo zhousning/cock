@@ -59,5 +59,10 @@ Rails.application.routes.draw do
 
   resources :roles
 
+  resources :spiders do
+    get :start, :on => :member
+  end
+  resources :selectors
+
   root :to => 'home#index'
 end

@@ -3,7 +3,7 @@
 # Table name: roles
 #
 #  id            :integer          not null, primary key
-#  name          :string
+#  name          :string           default(""), not null
 #  resource_id   :integer
 #  resource_type :string
 #  created_at    :datetime

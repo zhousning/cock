@@ -5,6 +5,10 @@ class Create<%= @mpc %> < ActiveRecord::Migration
       t.<%= column_arr[1] %> :<%= column_arr[0] %>,  null: false, default: Setting.systems.default_str
     <% elsif column_arr[1] == "integer" || column_arr[1] == "float" %>
       t.<%= column_arr[1] %> :<%= column_arr[0] %>,  null: false, default: Setting.systems.default_num 
+    <% elsif column_arr[1] == "boolean" %>
+      t.<%= column_arr[1] %> :<%= column_arr[0] %>,  null: false, default: Setting.systems.default_boolean
+    <% else %>
+      t.<%= column_arr[1] %> :<%= column_arr[0] %>
     <% end %><% end %>
 
     <% @relates.each do |relate| %><% relate_arr = relate.split(":") %><% if relate_arr[0] == "belongs_to" %>

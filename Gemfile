@@ -78,6 +78,8 @@ gem "sidekiq-cron", "~> 1.1"
 
 gem 'rest-client'
 
+gem 'open_uri_redirections'
+
 gem 'gon'
 
 gem 'iconv'

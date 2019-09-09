@@ -1,0 +1,28 @@
+- provide(:title, t('.title'))
+
+- content_for :main_body do
+  .container-fluid
+    .row
+      .col-md-12
+        %table.table.text-center.table-bordered
+          %thead
+            %tr
+            
+              %th 
+                = Setting.selectors.name
+              %th 
+                = Setting.selectors.file
+              %th 
+                = Setting.selectors.title
+          %tbody
+            %tr
+            
+              %td
+                = @selector.name
+              %td
+                = @selector.file
+              %td
+                = @selector.title
+    
+
+= render "layouts/control_panel"

@@ -1,0 +1,38 @@
+.container-fluid
+  .row.justify-content-sm-center
+    .col-sm-12
+      = form_for @selector do |f|
+        - if @selector.errors.any?
+          #error_explanation
+            %h2= "#{pluralize(@selector.errors.count, "error")} prohibited this buyer from being saved:"
+            %ul
+              - @selector.errors.full_messages.each do |msg|
+                %li= msg
+      
+        .form-group.row
+          = f.label Setting.selectors.name, :class => "col-sm-3 text-right"
+          .col-sm-9
+            = f.text_field :name, :class => "form-control"
+          
+        .form-group.row
+          = f.label Setting.selectors.file, :class => "col-sm-3 text-right"
+          .col-sm-9
+            .form-check.form-check-inline
+              = f.radio_button :file, Setting.systems.status_en_yes, :class => "form-check-input", :checked => "checked"
+              = f.label Setting.systems.status_yes, :class => "form-check-label"
+            .form-check.form-check-inline
+              = f.radio_button :file, Setting.systems.status_en_no, :class => "form-check-input"
+              = f.label Setting.systems.status_no, :class => "form-check-label"
+          
+        .form-group.row
+          = f.label Setting.selectors.title, :class => "col-sm-3 text-right"
+          .col-sm-9
+            = f.text_field :title, :class => "form-control"
+          
+      
+      
+        .form-group.row
+          .col-sm-3.offset-sm-2
+            = f.submit '保存', :class => "btn btn-success"
+          .col-sm-3.offset-sm-1
+            = link_to '返回', selectors_path, :class => "btn btn-danger"

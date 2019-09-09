@@ -3,11 +3,11 @@
 # Table name: permissions
 #
 #  id            :integer          not null, primary key
-#  name          :string
-#  subject_class :string
-#  subject_id    :integer
-#  action        :string
-#  description   :text
+#  name          :string           default(""), not null
+#  subject_class :string           default(""), not null
+#  action        :string           default(""), not null
+#  subject_id    :integer          default(0), not null
+#  description   :text             default(""), not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #

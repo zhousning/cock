@@ -133,6 +133,7 @@ defaults:
     status_no: 否
     default_str: ''
     default_num: 0
+    default_boolean: true
     index: index
     new: new
     show: show
@@ -286,6 +287,22 @@ development:
     age: 年龄
   statistics:
     label: 数据统计
+  spiders:
+    label: 爬虫
+    link: 请求地址
+    cookie: cookie
+    agent: agent
+    content_type: content_type
+    page: 页码
+    file: 文件名带后缀
+    referer: referer
+    host: host
+    redirection: redirection
+  selectors:
+    label: 选择器
+    name: 选择器名称
+    file: 文件
+    title: 标题
 test:
   admins: *1
   users: *2

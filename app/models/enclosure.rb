@@ -4,7 +4,7 @@
 #
 #  id         :integer          not null, primary key
 #  file       :string           default(""), not null
-#  ware_id    :integer
+#  notice_id  :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
